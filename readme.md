@@ -1,4 +1,4 @@
-# webdriver_utils
+# webdriver_utils [![Gem Version](https://badge.fury.io/rb/webdriver_utils.svg)](https://rubygems.org/gems/webdriver_utils)
 
 WebDriver utility methods.
 
