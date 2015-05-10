@@ -9,7 +9,7 @@ def sauce_key
 end
 
 def sauce?
-  sauce_user && sauce_key
+  !!(sauce_user && sauce_key)
 end
 
 def jenkins?
