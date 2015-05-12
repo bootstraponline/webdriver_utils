@@ -1,4 +1,4 @@
-# webdriver_utils [![Gem Version](https://badge.fury.io/rb/webdriver_utils.svg)](https://rubygems.org/gems/webdriver_utils)
+# webdriver_utils [![Gem Version](https://badge.fury.io/rb/webdriver_utils.svg)](https://rubygems.org/gems/webdriver_utils) [![Build Status](https://travis-ci.org/bootstraponline/webdriver_utils.svg?branch=master)](https://travis-ci.org/bootstraponline/webdriver_utils)
 
 WebDriver utility methods.
 
