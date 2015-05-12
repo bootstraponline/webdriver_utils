@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'selenium-webdriver'
 
 require_relative 'webdriver_utils/page'
 require_relative 'webdriver_utils/sauce'
