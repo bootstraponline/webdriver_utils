@@ -21,7 +21,8 @@ module WebDriverUtils
       ignored        = Array(opts[:ignore] || ::Exception)
       return_if_true = opts[:return_if_true]
 
-      end_time   = Time.now + timeout
+      start_time = Time.now
+      end_time   = start_time + timeout
       last_error = nil
 
       until Time.now > end_time
@@ -44,7 +45,8 @@ module WebDriverUtils
       if message
         msg = message.dup
       else
-        msg = "timed out after #{timeout} seconds"
+        elapsed_time = (Time.now - start_time).round
+        msg = "timed out after #{elapsed_time} seconds (timeout: #{timeout})"
       end
 
       msg << " (#{last_error.message})" if last_error

@@ -6,6 +6,7 @@ require_relative 'spec_helper'
 describe 'appium wait' do
 
   wait_opts = { timeout: 0.2, interval: 0.2 } # max_wait, interval
+  timeout_error = Selenium::WebDriver::Error::TimeOutError
 
 # There's no `must_not_raise` as the opposite of to raise_error
 
@@ -22,13 +23,13 @@ describe 'appium wait' do
     wait(3) { nil }
 
     # failed wait should error
-    expect { wait(wait_opts) { fail } }.to raise_error Selenium::WebDriver::Error::TimeOutError
-    expect { wait(0.1) { fail } }.to raise_error Selenium::WebDriver::Error::TimeOutError
+    expect { wait(wait_opts) { fail } }.to raise_error timeout_error
+    expect { wait(0.1) { fail } }.to raise_error timeout_error
 
     # regular rescue will not handle exceptions outside of StandardError hierarchy
     # must rescue Exception explicitly to rescue everything
-    expect { wait(wait_opts) { fail NoMemoryError } }.to raise_error Selenium::WebDriver::Error::TimeOutError
-    expect { wait(timeout: 0.2, interval: 0.0) { fail NoMemoryError } }.to raise_error Selenium::WebDriver::Error::TimeOutError
+    expect { wait(wait_opts) { fail NoMemoryError } }.to raise_error timeout_error
+    expect { wait(timeout: 0.2, interval: 0.0) { fail NoMemoryError } }.to raise_error timeout_error
 
     # invalid keys are rejected
     expect { wait(invalidkey: 2) { true } }.to raise_error RuntimeError
@@ -49,19 +50,24 @@ describe 'appium wait' do
     wait_true(wait_opts) { true }
 
     # failed wait should error
-    expect { wait_true(wait_opts) { false } }.to raise_error Selenium::WebDriver::Error::TimeOutError
-    expect { wait_true(wait_opts) { nil } }.to raise_error Selenium::WebDriver::Error::TimeOutError
+    expect { wait_true(wait_opts) { false } }.to raise_error timeout_error
+    expect { wait_true(wait_opts) { nil } }.to raise_error timeout_error
 
     # raise should error
-    expect { wait_true(wait_opts) { fail } }.to raise_error Selenium::WebDriver::Error::TimeOutError
+    expect { wait_true(wait_opts) { fail } }.to raise_error timeout_error
 
     # regular rescue will not handle exceptions outside of StandardError hierarchy
     # must rescue Exception explicitly to rescue everything
-    expect { wait_true(wait_opts) { fail NoMemoryError } }.to raise_error Selenium::WebDriver::Error::TimeOutError
+    expect { wait_true(wait_opts) { fail NoMemoryError } }.to raise_error timeout_error
     expect { wait_true(timeout: 0.2, interval: 0.0) { fail NoMemoryError } }
-      .to raise_error Selenium::WebDriver::Error::TimeOutError
+      .to raise_error timeout_error
 
     # invalid keys are rejected
     expect { wait_true(invalidkey: 2) { true } }.to raise_error RuntimeError
+  end
+
+  it 'wait_true timeout message' do
+    error_message = 'timed out after 3 seconds (timeout: 1)'
+    expect { wait_true(1) { sleep 3; false } }.to raise_error timeout_error, error_message
   end
 end
