@@ -4,6 +4,12 @@ WebDriver utility methods.
 
 - `require 'webdriver_utils'`
 
+#### example
+
+[Example tests that use webdriver_utils](https://github.com/bootstraponline/sauce_connect_ruby). This repo is part of a larger [angular_automation](https://github.com/bootstraponline/angular_automation) effort although it can be used standalone.
+
+#### methods
+
 method | description
    --- | ---
 **sauce_user**                         | returns ENV['SAUCE_USERNAME']
