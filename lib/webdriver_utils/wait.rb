@@ -16,8 +16,11 @@ module WebDriverUtils
       # [:one, :two] => :one, :two
       fail "Invalid keys #{invalid_keys.to_s[1..-2]}. Valid keys are #{valid_keys.to_s[1..-2]}" unless invalid_keys.empty?
 
+      # ensure negative timeout and interval are set to zero.
       timeout        = opts.fetch(:timeout, 30)
+      timeout        = timeout < 0 ? 0 : timeout
       interval       = opts.fetch(:interval, 0.2)
+      interval       = interval < 0 ? 0 : interval
       message        = opts[:message]
       ignored        = Array(opts[:ignore] || ::Exception)
       return_if_true = opts[:return_if_true]

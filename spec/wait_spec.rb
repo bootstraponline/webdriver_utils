@@ -54,7 +54,19 @@ describe 'appium wait' do
     ignore { fail NoMemoryError }
   end
 
-# wait_true is a success unless the value is not true
+  it 'timeout zero' do
+    # must execute the block at least once, even when timeout is zero
+    error_message = 'timed out after 2 seconds (timeout: 0)'
+    expect { wait_true(0) { sleep 2; false } }.to raise_error timeout_error, error_message
+  end
+
+  it 'negative timeout' do
+    # negative numbers should be set to zero
+    error_message = 'timed out after 1 seconds (timeout: 0)'
+    expect { wait_true(-1) { sleep 1; false } }.to raise_error timeout_error, error_message
+  end
+
+  # wait_true is a success unless the value is not true
   it 'wait_true' do
     # successful wait should not error
     wait_true(wait_opts) { true }
