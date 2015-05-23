@@ -6,10 +6,11 @@ module WebDriverUtils
     # Note that the Ruby timeout module is avoided. timeout has problems.
     # https://coderwall.com/p/1novga
 
+    # bubble - if set, the last exception will be raised if it exists
     # Wait code from the selenium Ruby gem
     # https://github.com/SeleniumHQ/selenium/blob/cf501dda3f0ed12233de51ce8170c0e8090f0c20/rb/lib/selenium/webdriver/common/wait.rb
     def _generic_wait(opts = {}, &block)
-      valid_keys   = [:timeout, :interval, :message, :ignore, :return_if_true]
+      valid_keys   = [:timeout, :interval, :message, :ignore, :return_if_true, :bubble]
       invalid_keys = []
       opts.keys.each { |key| invalid_keys << key unless valid_keys.include?(key) }
       # [:one, :two] => :one, :two
@@ -20,6 +21,7 @@ module WebDriverUtils
       message        = opts[:message]
       ignored        = Array(opts[:ignore] || ::Exception)
       return_if_true = opts[:return_if_true]
+      bubble         = !!opts.fetch(:bubble, false)
 
       start_time = Time.now
       end_time   = start_time + timeout
@@ -33,7 +35,7 @@ module WebDriverUtils
           else
             return block.call
           end
-        rescue ::Errno::ECONNREFUSED => e
+        rescue ::Errno::ECONNREFUSED, ::TypeError, ::NameError, ::NoMethodError => e
           raise e
         rescue *ignored => last_error # rubocop:disable Lint/HandleExceptions
           # swallowed
@@ -42,16 +44,21 @@ module WebDriverUtils
         sleep interval
       end
 
+      elapsed_time    = (Time.now - start_time).round
+      default_message = "timed out after #{elapsed_time} seconds (timeout: #{timeout})"
+
       if message
-        msg = message.dup
+        msg = "#{message.dup} [#{default_message}]"
       else
-        elapsed_time = (Time.now - start_time).round
-        msg = "timed out after #{elapsed_time} seconds (timeout: #{timeout})"
+        msg = default_message
       end
 
       msg << " (#{last_error.message})" if last_error
 
-      fail Selenium::WebDriver::Error::TimeOutError, msg
+      fail_error = last_error if bubble
+      fail_error ||= Selenium::WebDriver::Error::TimeOutError
+
+      fail fail_error, msg
     end
 
     # process opts before calling _generic_wait
