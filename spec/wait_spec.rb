@@ -5,7 +5,7 @@ require_relative 'spec_helper'
 
 describe 'appium wait' do
 
-  wait_opts = { timeout: 0.2, interval: 0.2 } # max_wait, interval
+  wait_opts     = { timeout: 0.2, interval: 0.2 } # max_wait, interval
   timeout_error = Selenium::WebDriver::Error::TimeOutError
 
 # There's no `must_not_raise` as the opposite of to raise_error
@@ -33,6 +33,16 @@ describe 'appium wait' do
 
     # invalid keys are rejected
     expect { wait(invalidkey: 2) { true } }.to raise_error RuntimeError
+  end
+
+  it 'wait bubble' do
+    expect { wait(timeout: 0.2, bubble: false) { fail NoMemoryError } }.to raise_error timeout_error
+    expect { wait(timeout: 0.2) { fail NoMemoryError } }.to raise_error timeout_error
+    expect { wait(timeout: 0.2, bubble: true) { fail NoMemoryError } }.to raise_error NoMemoryError
+    expect { wait(timeout: 0.2, bubble: true) { fail RuntimeError } }.to raise_error RuntimeError
+
+    error_message = 'timed out after 3 seconds (timeout: 1)'
+    expect { wait_true(timeout: 1, bubble: true) { sleep 3; false } }.to raise_error timeout_error, error_message
   end
 
   it 'ignore' do
