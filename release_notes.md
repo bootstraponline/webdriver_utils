@@ -1,3 +1,14 @@
+#### v0.0.4 2015-05-23
+
+- [9c8cc07](https://github.com/bootstraponline/webdriver_utils/commit/9c8cc07043fdd5de3b1e8159cee36987c6d88787) Release 0.0.4
+- [02b7f46](https://github.com/bootstraponline/webdriver_utils/commit/02b7f465a7736f3eb1c9e6df4dd96f4dfaff4358) Test wait edge cases
+- [4994bf5](https://github.com/bootstraponline/webdriver_utils/commit/4994bf57b483b79b58da7a368a6ed8fa3728de67) Ensure block executes at least once
+- [fec9983](https://github.com/bootstraponline/webdriver_utils/commit/fec99832b43c59c23ef1c7795267a0fa85f7d4f5) Restore old rescue behavior
+- [5ec2baf](https://github.com/bootstraponline/webdriver_utils/commit/5ec2baf01bffc54a9b626afbd25667acc691c7b6) Test wait bubble
+- [7c60a42](https://github.com/bootstraponline/webdriver_utils/commit/7c60a428dffc9587b2b956c97186a5e5e01846d9) Update wait error and add bubble option
+- [02aa9a3](https://github.com/bootstraponline/webdriver_utils/commit/02aa9a38d7a087866427f08903e8667e2f233668) Link example
+
+
 #### v0.0.3 2015-05-12
 
 - [00d66ad](https://github.com/bootstraponline/webdriver_utils/commit/00d66adafe1b979ab1228b73bb6887cea71ceaf4) Add Travis badge
