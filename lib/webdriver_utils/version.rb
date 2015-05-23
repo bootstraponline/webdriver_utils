@@ -1,4 +1,4 @@
 module WebDriverUtils
-  VERSION = '0.0.3' unless defined? ::WebDriverUtils::VERSION
-  DATE    = '2015-05-12' unless defined? ::WebDriverUtils::DATE
+  VERSION = '0.0.4' unless defined? ::WebDriverUtils::VERSION
+  DATE    = '2015-05-23' unless defined? ::WebDriverUtils::DATE
 end
