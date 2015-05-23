@@ -32,7 +32,9 @@ module WebDriverUtils
       # occur inside a block and self correct depending on the method return
       # value. This is unlike ECONNREFUSED which will always fail.
 
-      until Time.now > end_time
+      # use do..while format to ensure the block always executes at least once
+      # even if timeout is zero.
+      begin
         begin
           if return_if_true
             result = block.call
@@ -47,7 +49,7 @@ module WebDriverUtils
         end
 
         sleep interval
-      end
+      end until Time.now > end_time
 
       elapsed_time    = (Time.now - start_time).round
       default_message = "timed out after #{elapsed_time} seconds (timeout: #{timeout})"
