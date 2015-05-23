@@ -27,6 +27,11 @@ module WebDriverUtils
       end_time   = start_time + timeout
       last_error = nil
 
+      # design note,  ::TypeError, ::NameError, ::NoMethodError are not
+      # rescued then raised like ECONNREFUSED because they can legitimately
+      # occur inside a block and self correct depending on the method return
+      # value. This is unlike ECONNREFUSED which will always fail.
+
       until Time.now > end_time
         begin
           if return_if_true
@@ -35,7 +40,7 @@ module WebDriverUtils
           else
             return block.call
           end
-        rescue ::Errno::ECONNREFUSED, ::TypeError, ::NameError, ::NoMethodError => e
+        rescue ::Errno::ECONNREFUSED => e
           raise e
         rescue *ignored => last_error # rubocop:disable Lint/HandleExceptions
           # swallowed
