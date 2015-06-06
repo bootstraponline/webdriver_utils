@@ -1,3 +1,9 @@
+#### v0.0.5 2015-06-05
+
+- [394493b](https://github.com/bootstraponline/webdriver_utils/commit/394493b58667e0accf210f3439a92d0161eeb8c2) Release 0.0.5
+- [7334e02](https://github.com/bootstraponline/webdriver_utils/commit/7334e0269d2184c8edeec9fb891bda6219240390) Update page_name regex
+
+
 #### v0.0.4 2015-05-23
 
 - [9c8cc07](https://github.com/bootstraponline/webdriver_utils/commit/9c8cc07043fdd5de3b1e8159cee36987c6d88787) Release 0.0.4
