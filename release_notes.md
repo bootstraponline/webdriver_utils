@@ -1,3 +1,9 @@
+#### v0.0.6 2015-06-07
+
+- [817af20](https://github.com/bootstraponline/webdriver_utils/commit/817af200cabc42d247a8c6547551e248da2b61ce) Release 0.0.6
+- [466073c](https://github.com/bootstraponline/webdriver_utils/commit/466073cc801cf7be703325a6348909bb142a150c) Add watir alias for driver opt
+
+
 #### v0.0.5 2015-06-05
 
 - [394493b](https://github.com/bootstraponline/webdriver_utils/commit/394493b58667e0accf210f3439a92d0161eeb8c2) Release 0.0.5
