@@ -8,7 +8,7 @@ module WebDriverUtils
     def define_page_methods opts={}
       page_module   = opts[:page_module] || raise('must set page_module')
       target_class  = opts[:target_class] || raise('must set target_class')
-      driver_object = opts[:driver] || raise('must set driver')
+      driver_object = opts[:watir] || opts[:driver] || raise('must set driver')
       page_module.constants.each do |page_class|
         # ButtonsPage => buttons_page
         # https://github.com/rails/rails/blob/daaa21bc7d20f2e4ff451637423a25ff2d5e75c7/activesupport/lib/active_support/inflector/methods.rb#L96
