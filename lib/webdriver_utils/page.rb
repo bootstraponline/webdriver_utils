@@ -6,6 +6,7 @@ module WebDriverUtils
     end
 
     def define_page_methods opts={}
+      method        = opts.fetch(:method, :define_singleton_method)
       page_module   = opts[:page_module] || raise('must set page_module')
       target_class  = opts[:target_class] || raise('must set target_class')
       driver_object = opts[:watir] || opts[:driver] || raise('must set driver')
@@ -13,7 +14,7 @@ module WebDriverUtils
         # ButtonsPage => buttons_page
         # https://github.com/rails/rails/blob/daaa21bc7d20f2e4ff451637423a25ff2d5e75c7/activesupport/lib/active_support/inflector/methods.rb#L96
         page_name = page_class.to_s.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
-        target_class.send(:define_singleton_method, page_name) do
+        target_class.send(method, page_name) do
           page_module.const_get(page_class).new driver_object
         end
       end
