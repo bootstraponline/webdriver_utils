@@ -1,3 +1,9 @@
+#### v1.0.0 2015-06-19
+
+- [764a48d](https://github.com/bootstraponline/webdriver_utils/commit/764a48dcb01410e156023bf7da3567ab6abda18b) Release 1.0.0
+- [da66bce](https://github.com/bootstraponline/webdriver_utils/commit/da66bcefc213a7eee3f4fcba84fc6eb3927b480c) Allow non-singleton page methods
+
+
 #### v0.0.6 2015-06-07
 
 - [817af20](https://github.com/bootstraponline/webdriver_utils/commit/817af200cabc42d247a8c6547551e248da2b61ce) Release 0.0.6
