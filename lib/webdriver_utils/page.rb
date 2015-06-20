@@ -15,7 +15,11 @@ module WebDriverUtils
         # https://github.com/rails/rails/blob/daaa21bc7d20f2e4ff451637423a25ff2d5e75c7/activesupport/lib/active_support/inflector/methods.rb#L96
         page_name = page_class.to_s.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
         target_class.send(method, page_name) do
-          page_module.const_get(page_class).new driver_object
+          instance_name = "@#{page_module}#{page_class}"
+          instance      = instance_variable_get(instance_name)
+          return instance if instance
+          obj = page_module.const_get(page_class).new driver_object
+          instance_variable_set instance_name, obj
         end
       end
     end
