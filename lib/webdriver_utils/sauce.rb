@@ -15,11 +15,13 @@ def sauce_key
 end
 
 # Returns true if both sauce user and sauce key are defined.
+# Returns false if they're not defined.
 def sauce?
-  sauce_user && sauce_key
+  !!(sauce_user && sauce_key)
 end
 
-# Returns true if env is set and not empty.
+# Returns true if env is set and not empty
+# Returns false if env is not set or empty.
 def jenkins?
   env = ENV['JENKINS_SERVER_COOKIE']
   env && !env.empty?
