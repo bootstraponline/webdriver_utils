@@ -1,3 +1,13 @@
+#### v1.0.1 2015-06-20
+
+- [3864ea9](https://github.com/bootstraponline/webdriver_utils/commit/3864ea97c6fb0c10c09acddaa0e9c6cfbec6b61b) Release 1.0.1
+- [05d369c](https://github.com/bootstraponline/webdriver_utils/commit/05d369c27435707025ae49477b554254efe00337) Update sauce helpers
+- [cbf5517](https://github.com/bootstraponline/webdriver_utils/commit/cbf55173cda55be64fe1ea970c3e3e628bb6b344) Move page helpers to angular_webdriver
+- [909b4e3](https://github.com/bootstraponline/webdriver_utils/commit/909b4e3da137467d08ed94ec575030b4adf32c85) Allow by/element/no_wait within block in page object
+- [82d485d](https://github.com/bootstraponline/webdriver_utils/commit/82d485d3b66c6ea29b18804fee166b395a4842bf) Reuse page object once defined
+- [204c1a4](https://github.com/bootstraponline/webdriver_utils/commit/204c1a40279cd5a7bcba06ed10d905096f0a1b9f) Add gemnasium badge
+
+
 #### v1.0.0 2015-06-19
 
 - [764a48d](https://github.com/bootstraponline/webdriver_utils/commit/764a48dcb01410e156023bf7da3567ab6abda18b) Release 1.0.0
