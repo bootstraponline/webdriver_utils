@@ -1,3 +1,9 @@
+#### v1.0.2 2015-06-20
+
+- [54e0666](https://github.com/bootstraponline/webdriver_utils/commit/54e06661b2085f027fdbfbc9008e6bf3f2a592b0) Release 1.0.2
+- [880df43](https://github.com/bootstraponline/webdriver_utils/commit/880df4322afc2f77fca678ca5b63a4e33b5fb2cd) Fix sauce?
+
+
 #### v1.0.1 2015-06-20
 
 - [3864ea9](https://github.com/bootstraponline/webdriver_utils/commit/3864ea97c6fb0c10c09acddaa0e9c6cfbec6b61b) Release 1.0.1
